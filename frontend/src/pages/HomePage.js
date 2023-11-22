@@ -1,4 +1,6 @@
 import React from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
+import ClassifyBtn from '../components/ClassifyButton';
 
 const HomePage = () => {
   return (
@@ -9,9 +11,24 @@ const HomePage = () => {
         <div style={{left: 270, top: 115, position: 'absolute', color: 'black', fontSize: 35, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>Your AI Classifier</div>
         <div style={{width: 295, height: 53, left: 307, top: 179, position: 'absolute', color: '#646262', fontSize: 15, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>How can we help you today?</div>
         <div style={{width: 647, height: 170, left: 101, top: 228, position: 'absolute', background: '#FBF5F5', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 29, border: '1px #EAE7E7 solid'}} />
-        <div style={{width: 58, height: 23, left: 653, top: 359, position: 'absolute', background: '#418BF9', borderRadius: 8}} />
-        <div style={{width: 48, height: 12, left: 662, top: 363, position: 'absolute', color: 'white', fontSize: 10, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>classify</div>
-        <div style={{width: 523, height: 85, left: 131, top: 262, position: 'absolute', color: '#969494', fontSize: 25, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>Type your political post here</div>
+        <></>
+        {/* <div style={{width: 48, height: 12, left: 662, top: 363, position: 'absolute', color: 'white', fontSize: 10, fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>classify</div> */}
+        <ClassifyBtn />
+        {/* taking in a user's input */}
+        <Form style={{ width: 523, height: 85, left: 131, top: 262, position: 'absolute' }}>
+          <Form.Control
+            type="text"
+            placeholder="Type your political post here"
+            style={{
+              color: '#969494',
+              fontSize: 25,
+              fontFamily: 'Inter',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          />
+        </Form>  
+
         <div style={{width: 10, height: 15, left: 76, top: 16, position: 'absolute', color: 'black', fontSize: 22, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>I</div>
         <div style={{left: 16, top: 9, position: 'absolute', color: 'black', fontSize: 30, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>P</div>
         <div style={{left: 57, top: 9, position: 'absolute', color: 'black', fontSize: 30, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>L</div>
