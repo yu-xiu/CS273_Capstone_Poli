@@ -3,17 +3,20 @@ import { Button } from 'react-bootstrap';
 
 const MyButton = () => {
   const [buttonStyle, setButtonStyle] = useState({
-    width: 58,
-    height: 23,
-    left: 653,
-    top: 359,
-    position: 'absolute',
+    width: 100,
+    height: 53,
+    left: 430, // Set the distance from the right edge of the viewport
+    bottom: 0, // Set the distance from the bottom edge of the viewport
+    position: 'relative', // Use fixed positioning
     background: '#418BF9',
-    borderRadius: 8,
+    borderRadius: 15,
     color: 'white',
     border: 'none',
-    boxShadow: '0 4px 8px rgba(76, 175, 80, 0.2)',
+    boxShadow: '0 4px 20px rgba(76, 175, 80, 0.2)',
     transition: 'background 0.3s ease',
+    fontSize: 22,
+    fontWeight: 'bold',
+    
   });
 
   const handleMouseOver = () => {
