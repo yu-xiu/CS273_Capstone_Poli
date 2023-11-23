@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-function InputArea() {
+function InputArea({onChange}) {
     return(
         <InputGroup size="lg">
             <Form.Group >
@@ -9,6 +9,7 @@ function InputArea() {
                     rows={2} 
                     cols={40}
                     placeholder='Type your political post here'
+                    onChange={onChange}
 
                     style={{
                         color: '#969494',
@@ -16,8 +17,8 @@ function InputArea() {
                         fontFamily: 'Inter',
                         fontWeight: '700',
                         wordWrap: 'break-word',
-                        marginTop: 100,
-                        marginLeft: 10,
+                        marginTop: 70,
+                        marginLeft: 15,
                         borderRadius: 20,
                         backgroundColor: 'white',
                         border: 'none',

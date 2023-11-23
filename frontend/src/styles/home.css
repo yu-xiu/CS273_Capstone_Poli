@@ -6,6 +6,7 @@ body {
 .title {
     position: left;
     padding-left: 20px;
+    padding-top: 10px;
     color: black;
     font-size: 40px;
     font-family: 'Inter';

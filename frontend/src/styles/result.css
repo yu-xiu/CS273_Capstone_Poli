@@ -1,8 +1,8 @@
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 80vh;
   }
   
 .result {
@@ -12,6 +12,26 @@
     font-weight: 700;
     word-wrap: break-word;
     text-align: left;
-    margin-bottom: 300px;
+    margin-bottom: 0px;
+    margin-left: 15px;
     width: 50%;
+}
+
+.result-box {
+  width: 42%;
+  height: 38%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  margin: 16px;
+  background-color: #FFFFFF;
+}
+
+.result-content {
+  /* Additional styling for the result content */
+}
+
+h2 {
+  color: #333;
 }

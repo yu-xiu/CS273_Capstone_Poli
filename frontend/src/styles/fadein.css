@@ -20,7 +20,8 @@ body {
   animation: fadeIn 1s ease forwards;
   animation-iteration-count: 3;
   position: relative;
-  top: 100px;
+  left:2px;
+  top: 25px;
 }
 
 @keyframes fadeIn {

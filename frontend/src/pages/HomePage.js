@@ -3,6 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import ClassifyBtn from '../components/ClassifyButton';
 import WordsAnimation from '../components/FadeInWords';
 import UserInputArea from '../components/Input';
+import UserOutputArea from '../components/Output';
 import NavBar from '../components/NavBar'
 import '../styles/fadein.css';
 import '../styles/home.css';
@@ -14,6 +15,7 @@ import axios from "axios";
  
 
 const HomePage = () => {
+  const [outputValue, setOutputValue] = useState('');
   const [postText, setPostText] = useState('');
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
@@ -39,12 +41,13 @@ const HomePage = () => {
   }, []);
 
   const handleInputChange = (event) => {
+      console.log('Input change', postText);
     setPostText(event.target.value);
   };
 
-  const handleClassifyClick = () => {
-    // Handle classification logic here (you can use 'postText' state)
-    console.log('Classifying:', postText);
+  const handleClassifyClick = () => { 
+      console.log('Form submitted with postText:', postText);
+      setOutputValue(postText);
   };
 
   return (
@@ -56,24 +59,24 @@ const HomePage = () => {
         <div className="column">
           {/* Content for the first column */}
           <div>
-            
-            <div className='fadein'>
-              <WordsAnimation />
-            </div>
-          
             <div className='title'>Your AI Classifier</div>
-
-            {/* taking in a user's input */}
+            <WordsAnimation />
+            <div className='fadein'>
+            </div>
             <div >
-              <UserInputArea />
+            {/* taking in a user's input */}
+              <UserInputArea onChange={handleInputChange}/>
             </div>
 
-            <ClassifyBtn className='classify-button'/>
+            <ClassifyBtn onClick={handleClassifyClick}/>
           </div>
         </div>
         <div className="column">
           {/* Content for the second column */}
           <div className='result'>Results</div>
+          <div >
+              <UserOutputArea outputValue={outputValue}/>
+            </div>
         </div>
       </div>
     </div>
