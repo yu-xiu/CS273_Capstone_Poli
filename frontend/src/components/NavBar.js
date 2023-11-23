@@ -7,8 +7,7 @@ function Navigation() {
     <Nav variant="tabs" defaultActiveKey="/home" style={{ backgroundColor: '#f0f0f0', padding: '10px', background: '#E0EDF5', display: 'flex', justifyContent: 'space-between' }}>
       <Nav.Item>
         <Nav.Link href="/home" style={{ color: '#333', fontWeight: 'bold', fontSize: '36px' }}>
-          <Image src='/poli_logo.png' alt="Home" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '8px' }} />
-        </Nav.Link>
+        <Image src='/poli_logo.png' alt="Home" style={{ width: '80px', height: '40px', marginRight: '8px', marginTop: '8px' }} />        </Nav.Link>
       </Nav.Item>
     </Nav>
   );
