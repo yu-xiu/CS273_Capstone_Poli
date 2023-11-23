@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 
 const MyButton = ({onClick}) => {
   const [buttonStyle, setButtonStyle] = useState({
     width: 100,
     height: 53,
-    left: 465, // Set the distance from the right edge of the viewport
-    bottom: -15, // Set the distance from the bottom edge of the viewport
-    position: 'relative', // Use fixed positioning
+    position: 'fixed', // Use fixed positioning
     background: '#418BF9',
     borderRadius: 15,
     color: 'white',
@@ -18,6 +16,27 @@ const MyButton = ({onClick}) => {
     fontWeight: 'bold',
     
   });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setButtonStyle({
+        ...buttonStyle,
+        left: window.innerWidth - (2*window.innerWidth / 3) - 40, // Adjust this value based on your desired distance from the right edge
+        bottom: window.innerHeight -(3*window.innerHeight/ 4) - 20, // Adjust this value based on your desired distance from the bottom edge
+      });
+    };
+
+    // Attach the event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Call handleResize initially
+    handleResize();
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Empty dependency array ensures that useEffect runs only once on mount
 
   const handleMouseOver = () => {
     setButtonStyle({

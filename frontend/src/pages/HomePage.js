@@ -17,6 +17,7 @@ import axios from "axios";
 const HomePage = () => {
   const [outputValue, setOutputValue] = useState('');
   const [postText, setPostText] = useState('');
+  const [results, setResults] = useState([]);
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -41,21 +42,31 @@ const HomePage = () => {
   }, []);
 
   const handleInputChange = (event) => {
-      console.log('Input change', postText);
     setPostText(event.target.value);
   };
 
-  const handleClassifyClick = () => { 
-      console.log('Form submitted with postText:', postText);
-      setOutputValue(postText);
+  const handleSubmit = async () => {
+    try {
+      console.log('postText=', postText);
+      const response = await axios.post('http://localhost:5000/generate_results', {
+        userInput: postText, // this is the reslut posted to the result based on user text input
+      });
+
+      console.log('Response Data:', response.data);
+      setResults([response.data.result]);
+      setOutputValue(2);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
+
 
   return (
     <div style={{width: `${windowDimensions.width}px`, height: `${windowDimensions.height}px`, position: 'relative', background: '#F2F0F0'}}>
       <div>
         <NavBar/>
       </div>
-      <div className="col-container">
+      <div className="col-container"  style={{overflowY:'auto', minHeight:'100vh'}}>
         <div className="column">
           {/* Content for the first column */}
           <div>
@@ -65,18 +76,19 @@ const HomePage = () => {
             </div>
             <div >
             {/* taking in a user's input */}
-              <UserInputArea onChange={handleInputChange}/>
+              <UserInputArea value={postText} onChange={handleInputChange}/>
             </div>
 
-            <ClassifyBtn onClick={handleClassifyClick}/>
+            <ClassifyBtn className='classify-button'onClick={handleSubmit}/>
           </div>
         </div>
         <div className="column">
           {/* Content for the second column */}
           <div className='result'>Results</div>
-          <div >
-              <UserOutputArea outputValue={outputValue}/>
-            </div>
+                <div>
+                    <UserOutputArea  outputValue={outputValue}/>
+                </div>
+            
         </div>
       </div>
     </div>
