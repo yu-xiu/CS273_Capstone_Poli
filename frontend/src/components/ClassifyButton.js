@@ -5,7 +5,7 @@ const MyButton = () => {
   const [buttonStyle, setButtonStyle] = useState({
     width: 100,
     height: 53,
-    left: 430, // Set the distance from the right edge of the viewport
+    left: 400, // Set the distance from the right edge of the viewport
     bottom: 0, // Set the distance from the bottom edge of the viewport
     position: 'relative', // Use fixed positioning
     background: '#418BF9',
