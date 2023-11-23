@@ -7,12 +7,12 @@ import ResultPage from './pages/ResultPage';
 function App() {
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    fetch('/generate_results')
-      .then(response => response.json())
-      .then(data => setMessage(data.message))
-      .catch(error => console.error('Error:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/localhost:5000/generate_results')
+  //     .then(response => response.json())
+  //     .then(data => setMessage(data.message))
+  //     .catch(error => console.error('Error:', error));
+  // }, []);
 
   return (
     // <BrowserRouter>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 
-const MyButton = () => {
+const MyButton = ({ onClick }) => {
   const [buttonStyle, setButtonStyle] = useState({
     width: 100,
     height: 53,
-    left: 400, // Set the distance from the right edge of the viewport
-    bottom: 0, // Set the distance from the bottom edge of the viewport
-    position: 'relative', // Use fixed positioning
+    left: 400, 
+    bottom: 0, 
+    position: 'relative',
     background: '#418BF9',
     borderRadius: 15,
     color: 'white',
@@ -20,17 +20,17 @@ const MyButton = () => {
   });
 
   const handleMouseOver = () => {
-    setButtonStyle({
-      ...buttonStyle,
+    setButtonStyle((prevStyle) => ({
+      ...prevStyle,
       background: '#45a049',
-    });
+    }));
   };
 
   const handleMouseOut = () => {
-    setButtonStyle({
-      ...buttonStyle,
+    setButtonStyle((prevStyle) => ({
+      ...prevStyle,
       background: '#418BF9',
-    });
+    }));
   };
 
   return (
@@ -38,6 +38,7 @@ const MyButton = () => {
       style={buttonStyle}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onClick={onClick}
     >
       Classify
     </Button>
