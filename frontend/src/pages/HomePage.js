@@ -6,6 +6,8 @@ import UserInputArea from '../components/Input';
 import NavBar from '../components/NavBar'
 import '../styles/fadein.css';
 import '../styles/home.css';
+import '../styles/columns.css';
+import '../styles/result.css';
 import axios from "axios";
 
 
@@ -46,11 +48,15 @@ const HomePage = () => {
   };
 
   return (
-        <div style={{width: `${windowDimensions.width}px`, height: `${windowDimensions.height}px`, position: 'relative', background: '#F2F0F0'}}>
+    <div style={{width: `${windowDimensions.width}px`, height: `${windowDimensions.height}px`, position: 'relative', background: '#F2F0F0'}}>
+      <div>
+        <NavBar/>
+      </div>
+      <div className="col-container">
+        <div className="column">
+          {/* Content for the first column */}
           <div>
-            <div>
-              <NavBar/>
-            </div>
+            
             <div className='fadein'>
               <WordsAnimation />
             </div>
@@ -64,14 +70,13 @@ const HomePage = () => {
 
             <ClassifyBtn className='classify-button'/>
           </div>
-          
-          <div>
-            <div className='result'>Result</div>
-          </div>
-
+        </div>
+        <div className="column">
+          {/* Content for the second column */}
+          <div className='result'>Result</div>
+        </div>
       </div>
-      
-     
+    </div>
     );
 }
 export default HomePage;
