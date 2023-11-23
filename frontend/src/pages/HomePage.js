@@ -73,7 +73,7 @@ const HomePage = () => {
         </div>
         <div className="column">
           {/* Content for the second column */}
-          <div className='result'>Result</div>
+          <div className='result'>Results</div>
         </div>
       </div>
     </div>
