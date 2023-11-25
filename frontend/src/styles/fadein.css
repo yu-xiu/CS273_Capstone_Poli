@@ -31,6 +31,23 @@ body {
     opacity: 1;
   }
 }
+.fade-in-result-container {
+  text-align: left;
+  padding-left: 20px;
+  color: #418BF9;
+  font-size: 25px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  vertical-align: top;
+}
+.fade-in-result .word {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-iteration-count: 3;
+  position: relative;
+  top: 10px;
+}
 
 /* Delay each word's animation */
 .fade-in span:nth-child(1) {
@@ -50,4 +67,11 @@ body {
 }
 .fade-in span:nth-child(6) {
   animation-delay: 1.2s;
+}
+
+.fade-in-result span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.fade-in-result span:nth-child(2) {
+  animation-delay: 0.4s;
 }

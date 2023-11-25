@@ -24,12 +24,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 8px;
     margin: 16px;
-    background-color: #FFFFFF;
+    background-color: #f7f4ef;
   }
   .result-content {
-    font-size: 23px;
+    font-size: 65px;
   }
 
   h2 {
     color: #333;
   }
+
+.list-item {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #45a049;
+}

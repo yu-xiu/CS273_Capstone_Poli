@@ -8,16 +8,16 @@ function InputArea({value, onChange}) {
     };
     
     const [inputStyles, setInputStyles] = useState({
-    fontSize: 22,
-    marginTop: 70,
-    marginLeft: 15,
-    borderRadius: 20,
-    backgroundColor: 'white',
-    border: 'none',
-    boxShadow: '0 0 10px #969494',
-    paddingTop: '20px',
-    paddingLeft: '20px',
-  });
+        fontSize: 22,
+        marginTop: 70,
+        marginLeft: 15,
+        borderRadius: 20,
+        backgroundColor: '#D8D8D8',
+        border: 'none',
+        boxShadow: '0 0 10px #969494',
+        paddingTop: '20px',
+        paddingLeft: '20px',
+    });
     const [textareaSize, setTextareaSize] = useState({
     rows: 10, // initial number of rows
     cols: 40, // initial number of cols
