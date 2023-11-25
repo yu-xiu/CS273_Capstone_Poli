@@ -13,4 +13,5 @@
 ```pip install flask``` <br>
 ```pip install tensorflow``` <br>
 ```pip install scikit-learn```
+> Sample Poli App Home Page
 <img width="1223" alt="poli_sample" src="https://github.com/yu-xiu/CS273_Capstone_Poli/assets/35234267/df31083d-be20-443f-92b1-9abf894c9adf">
