@@ -12,7 +12,7 @@ function InputArea({value, onChange}) {
         marginTop: 70,
         marginLeft: 15,
         borderRadius: 20,
-        backgroundColor: '#D8D8D8',
+        backgroundColor: '#E0E0E0',
         border: 'none',
         boxShadow: '0 0 10px #969494',
         paddingTop: '20px',

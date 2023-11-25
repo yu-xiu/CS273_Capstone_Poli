@@ -12,6 +12,7 @@ const MyButton = ({ onClick }) => {
     borderRadius: 15,
     color: 'white',
     border: 'none',
+    marginTop: 10,
     boxShadow: '0 4px 20px rgba(76, 175, 80, 0.2)',
     transition: 'background 0.3s ease',
     fontSize: 22,
@@ -23,8 +24,8 @@ const MyButton = ({ onClick }) => {
     const handleResize = () => {
       setButtonStyle({
         ...buttonStyle,
-        left: window.innerWidth - (2*window.innerWidth / 3), // Adjust this value based on your desired distance from the right edge
-        bottom: window.innerHeight -(3*window.innerHeight/ 4) - 190, // Adjust this value based on your desired distance from the bottom edge
+        left: window.innerWidth - (2*window.innerWidth / 3) + 35, 
+        bottom: window.innerHeight -(3*window.innerHeight/ 4) - 190, 
       });
     };
 
