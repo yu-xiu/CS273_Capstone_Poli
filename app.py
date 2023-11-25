@@ -11,14 +11,16 @@ from transformers import GPT2Tokenizer
 from transformers import BertTokenizer, TFBertForSequenceClassification
 from tensorflow.keras.models import load_model
 from joblib import dump, load
+import re
+from html import unescape
 
 
 
 app = Flask(__name__)
 CORS(app)
 
-with app.app_context():
-    g.bias_bert_model = TFBertForSequenceClassification.from_pretrained("models/BIAS_BERT")
+#with app.app_context():
+    #g.bias_bert_model = TFBertForSequenceClassification.from_pretrained("models/BIAS_BERT")
 
 # generating relative path for reading in best model
 base_dir = os.path.dirname(os.path.realpath(__file__))
@@ -33,7 +35,9 @@ model_path = os.path.join(base_dir, 'models','best_lstm_model_11_21.h5')
 
 with app.app_context():
     app.config["BIAS_BERT"] = TFBertForSequenceClassification.from_pretrained("models/BIAS_BERT")
-    
+
+with app.app_context():
+    app.config["MESSAGE_BERT"] = TFBertForSequenceClassification.from_pretrained("models/MESSAGE_BERT")
 
     '''app.config["BIAS_NB"] = load('model_filename.joblib')
 
@@ -69,29 +73,28 @@ def bias_bert(input_data):
     return bias_bert_result
 
 
-def bias_nb(input_data):
-    pass
+def message_bert(input_data):
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+    input_encoded = tokenizer.batch_encode_plus([input_data],
+                                                padding=True,
+                                                truncation=True,
+                                                max_length = 256,
+                                                return_tensors='tf')
 
-def bias_gpt(input_data):
+    model = app.config["MESSAGE_BERT"]
+    raw_predictions = model.predict([input_encoded['input_ids'], input_encoded['token_type_ids'], input_encoded['attention_mask']])
+    print(raw_predictions)
 
-    tokenizer = load_model("models/BIAS_GPT2")
-    model = GPT2Tokenizer.from_pretrained('models/BIAS_GPT2_tokenizer')
-    '''tokenizer = app.config["BIAS_GPT_TOKEN"]
-    model = app.config["BIAS_GPT"]'''
-    test_encodings = tokenizer([input_data], truncation=True, padding=True, return_tensors="tf")
-    raw_predictions = model.predict({'input_ids': test_encodings['input_ids'], 'attention_mask': test_encodings['attention_mask']})
+    mapping = {0: 'Attack', 1: 'Constituency', 2: 'Information', 3: 'Media', 4: 'Mobilization', 5: 'Personal', 6: 'Policy', 7: 'Support'}
 
+    logits = (raw_predictions.logits)
+    pred = np.argmax(logits[0])
 
-    logit = (raw_predictions[0])
-    pred = np.argmax(logit)
+    message_bert_result = mapping[pred]
 
-    bias = {
-        0: "Neutral",
-        1: "Partisan"
-    }
+    print("Bias Bert Result" + message_bert_result)
+    return message_bert_result
 
-    bias_gpt_result = bias[pred]
-    return bias_gpt_result
 
 
 @app.route('/generate_results', methods=['POST'])
@@ -100,11 +103,21 @@ def generate_results():
     print('HELLO!!')
     data = request.get_json()
 
-    # Assuming data contains the input for your NLP model
+    
     input_data = data['userInput']
     print('input_data=', input_data)
 
+    
+    clean = re.sub(r'\\x[0-9A-Fa-f]{2}', '', input_data)
+    clean = re.sub(r'[^\x00-\x7F]+', '', clean)
+    pattern = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    clean = re.sub(pattern, '', clean)
+    clean = unescape(clean)
+
+    input_data = clean
+
     bias_bert_result = bias_bert(input_data)
+    message_bert_result = message_bert(input_data)
     #bias_gpt_result = bias_gpt(input_data)
     #bias_nb_result = bias_nb(input_data)
 
@@ -119,7 +132,7 @@ def generate_results():
     result = [0,0,0,0]
 
     result[0] = bias_bert_result
-    #reult[1] = bias_gpt_result
+    result[1] = message_bert_result
 
     # return the result as a dictionary
     return jsonify({'result': result})
