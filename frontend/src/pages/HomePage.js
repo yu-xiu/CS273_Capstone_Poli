@@ -3,6 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import ClassifyBtn from '../components/ClassifyButton';
 import WordsAnimation from '../components/FadeInWords';
 import UserInputArea from '../components/Input';
+import UserOutputArea from '../components/Output';
 import NavBar from '../components/NavBar'
 import '../styles/fadein.css';
 import '../styles/home.css';
@@ -64,9 +65,9 @@ const HomePage = () => {
       </div>
       <div className="col-container">
         <div className="column">
-          {/* Content for the first column */}
+          {/* Content for the home column */}
           <div>
-            
+        
             <div className='fadein'>
               <WordsAnimation />
             </div>
@@ -81,17 +82,14 @@ const HomePage = () => {
             <ClassifyBtn className='classify-button' onClick={handleSubmit}/>
           </div>
         </div>
+        
         <div className="column">
           <div className='result'>Results</div>
-          {/* Content for the second column */}
-          {results.length > 0 && (
-            <div >
-              <p style={{ fontSize: '30px' }}>Result: {results[0]}</p>
-            </div>
-          )}
+          {/* Content for the result column */}
+          <UserOutputArea outputValue={results}/>          
+          </div>
         </div>
-      </div>
     </div>
-    );
+  );
 }
 export default HomePage;
